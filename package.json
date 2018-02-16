@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
+    "rails-ujs": "^5.1.5",
     "stylelint": "^8.4.0",
     "turbolinks": "^5.1.1"
   },
