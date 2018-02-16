@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@rails/webpacker": "^3.2.2"
+    "@rails/webpacker": "^3.2.2",
+    "stylelint": "^8.4.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.11.1",
@@ -27,11 +28,6 @@
     "frontend/**/*.js": [
       "prettier --write",
       "eslint",
-      "git add"
-    ],
-    "frontend/**/*.css": [
-      "prettier --write",
-      "stylelint --fix",
       "git add"
     ]
   },
