@@ -9,6 +9,9 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'webpacker'
 
+gem 'ethereum.rb'
+gem 'eth'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
