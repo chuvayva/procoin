@@ -16,7 +16,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { subdomain: ENV['ADMIN_SUBDOMAIN'], host: ENV['MAILER_HOST'] }
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
 
   config.i18n.fallbacks = true
 

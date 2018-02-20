@@ -18,6 +18,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # controller
 gem 'devise'
+gem 'devise_invitable'
 
 group :development, :test do
   gem 'byebug', platform: :mri
