@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get :profile, to: 'users#profile'
 
-  #resource :users, only: [:show, :edit, :update] do
-    #get :profile, to: 'users#show'
-  #end
+  resources :users, only: [:update] do
+    post :new_wallet, on: :collection
+  end
 end

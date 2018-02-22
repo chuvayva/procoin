@@ -5,6 +5,9 @@ br
 | Телефон: #{current_user.phone}
 br
 | Кошелек: #{current_user.wallet}
+- if current_user.wallet.blank?
+  = form_tag new_wallet_users_path do
+    = submit_tag "Создать"
 br
 = link_to "Выйти", destroy_user_session_path, method: :delete
 
