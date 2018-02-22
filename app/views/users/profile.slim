@@ -1,0 +1,10 @@
+| Имя: #{current_user.name}
+br
+| Почта: #{current_user.email}
+br
+| Телефон: #{current_user.phone}
+br
+| Кошелек: #{current_user.wallet}
+br
+= link_to "Выйти", destroy_user_session_path, method: :delete
+
