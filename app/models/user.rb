@@ -4,5 +4,6 @@ class User < ApplicationRecord
     :validatable, :registerable, :confirmable
 
   validates :name, presence: true
+  validates :wallet, format: /\A0x[a-fA-F0-9]{40}\Z/, if: 'wallet.present?'
 
 end

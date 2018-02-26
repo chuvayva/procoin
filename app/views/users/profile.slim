@@ -1,15 +1,40 @@
-| Имя: #{current_user.name}
-br
-| Почта: #{current_user.email}
-br
-| Телефон: #{current_user.phone}
-br
-| Кошелек: #{current_user.wallet}
-br
-| Баланс: #{current_user.balance}
-- if current_user.wallet.blank?
-  = form_tag new_wallet_users_path do
-    = submit_tag "Создать"
-br
-= link_to "Выйти", destroy_user_session_path, method: :delete
+.container
+  h2 Профиль
+  .form-group.row
+    label.col-sm-2
+      | Имя
+    .col-sm-10
+      p.form-control-static= current_user.name
+  .form-group.row
+    label.col-sm-2
+      | Почта
+    .col-sm-10
+      p.form-control-static= current_user.email
+  .form-group.row
+    label.col-sm-2
+      | Телефон
+    .col-sm-10
+      p.form-control-static= current_user.phone
+  .form-group.row
+    label.col-sm-2
+      | Кошелек
+    .col-sm-10
+      - if current_user.wallet.present?
+        p.form-control-static= current_user.wallet.presence
+      - else
+        = form_tag new_wallet_users_path do
+          = submit_tag "Создать", class: 'btn btn-default'
 
+  - if current_user.wallet.present?
+    .form-group.row
+      label.col-sm-2
+        | Баланс
+      .col-sm-10
+        p.form-control-static= current_user.balance
+
+  = link_to "Править", profile_edit_path, class: 'btn btn-primary'
+
+  br
+  br
+  br
+  = render 'common/notice'

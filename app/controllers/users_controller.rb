@@ -4,12 +4,16 @@ class UsersController < ApplicationController
   def profile
   end
 
+  def edit
+    @user = current_user
+  end
+
   def update
-    user = User.find(params[:id])
-    if user.update_attributes(user_params)
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
       redirect_to :profile, notice: 'Пользователь успешно изменен'
     else
-      render :profile
+      render :edit, notice: 'Что-то пошло не так'
     end
   end
 
@@ -25,6 +29,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:wallet)
+    params.require(:user).permit(:wallet, :wallet, :name)
   end
 end

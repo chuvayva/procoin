@@ -1,0 +1,26 @@
+.container
+  h1 Редактировать профиль
+
+  = form_for(@user) do |f|
+    .form-group.row
+      | #{@user.email}
+    .form-group
+      = f.label :name, "Имя"
+      | &nbsp
+      = f.text_field :name, class: 'form_control'
+    .form-group
+      = f.label :wallet, "Кошелек"
+      = f.text_field :wallet, class: 'form_control'
+    .form-group
+      br
+      - if @user.wallet.blank?
+        = form_tag new_wallet_users_path do
+          = submit_tag "Создать"
+
+      = f.submit 'Сохранить', class: 'btn btn-primary'
+    = link_to 'Отмена', profile_path, class: 'btn btn-primary'
+
+br
+br
+br
+= render 'common/notice'

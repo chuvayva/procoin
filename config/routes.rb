@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  get :profile, to: 'users#profile'
+  get '/profile', to: 'users#profile'
+  get '/profile/edit', to: 'users#edit'
 
   resources :users, only: [:update] do
     post :new_wallet, on: :collection
