@@ -8,10 +8,10 @@ client.instance_variable_set :@default_account, ETHEREUM_ADMIN_ACCOUNT
 client.instance_variable_set :@uri, ETHEREUM_RPC_URL
 
 contract = Ethereum::Contract.create(
-  file: Rails.root.join("lib/blockchain/VitToken.sol"),
+  abi: File.read(Rails.root.join("lib/blockchain/vit_token_abi.json")),
+  name: 'VitToken',
   address: ETHEREUM_TOKEN_ADDRESS,
   client: client,
-  contract_index: 1
 )
 
 Users::WalletProcessing.token_contract = contract
