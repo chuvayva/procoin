@@ -10,6 +10,7 @@ gem 'rollbar'
 
 gem 'webpacker'
 gem 'sendgrid-ruby'
+
 gem 'ethereum.rb'
 gem 'eth'
 
@@ -25,6 +26,7 @@ gem 'devise_invitable'
 gem 'slim'
 
 group :development, :test do
+  gem 'rspec-rails'
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
 end
@@ -32,6 +34,13 @@ end
 group :development do
   gem "letter_opener"
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :production do

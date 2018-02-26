@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ropsten.infura.io/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0xa85dc908f32bd58c4c4b25f90b843d5fd971df0e","from":"0x3702996923eba1b7c50b9748ca46b19bc56a41d0","data":"0x70a082310000000000000000000000003702996923eba1b7c50b9748ca46b19bc56a41d0","gas":"0x3d0900","gasPrice":"0x51f4d5c00"},"latest"],"id":1}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - ropsten.infura.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 26 Feb 2018 05:53:53 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '103'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.10.3 (Ubuntu)
+      Vary:
+      - Origin
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","id":1,"result":"0x000000000000000000000000000000000000000000000000069789fbbc4f8000"}
+
+'
+    http_version: 
+  recorded_at: Mon, 26 Feb 2018 05:53:53 GMT
+recorded_with: VCR 4.0.0
