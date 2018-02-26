@@ -29,6 +29,4 @@ Rails.application.configure do
   config.active_support.deprecation = :log
 
   config.active_record.migration_error = :page_load
-
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
