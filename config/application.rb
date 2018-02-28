@@ -25,5 +25,7 @@ module Procoin
       g.helper          false
       g.channel         assets: false
     end
+
+    config.i18n.default_locale = :ru
   end
 end
