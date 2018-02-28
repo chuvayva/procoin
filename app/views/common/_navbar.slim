@@ -1,7 +1,7 @@
 nav.navbar.navbar-default
   .container-fluid
     .navbar-header
-      a.navbar-brand href=root_path Procoin
+      a.navbar-brand href=root_path data-turbolinks="false" Procoin
 
     - if current_user.present?
       ul.nav.navbar-nav.navbar-right
@@ -13,3 +13,6 @@ nav.navbar.navbar-default
           a href=destroy_user_session_path data-method='delete'
             span.glyphicon.glyphicon-log-out>
             | Выйти
+    - else
+      ul.nav.navbar-nav.navbar-right
+        = render 'devise/shared/links'
