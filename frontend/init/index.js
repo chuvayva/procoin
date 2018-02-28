@@ -1,6 +1,12 @@
+import Turbolinks from "turbolinks";
+import Rails from "rails-ujs";
 import { Buffer } from "buffer";
 import ethUtil from "ethereumjs-util";
-import "./index.css";
+
+import "./index.css.scss";
+
+Turbolinks.start();
+Rails.start();
 
 const tokenAddress = "0x0dcd2f752394c41875e259e00bb44fd505297caf";
 const nonce = 32;
