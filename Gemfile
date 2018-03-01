@@ -24,6 +24,7 @@ gem 'devise_invitable'
 
 # view
 gem 'slim'
+gem 'draper'
 
 group :development, :test do
   gem 'rspec-rails'

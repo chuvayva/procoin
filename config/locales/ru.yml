@@ -1,2 +1,10 @@
-en:
+ru:
   hello: "Привет"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            wallet:
+              invalid: "Неверный формат"
+

@@ -1,3 +1,4 @@
-| Текущий пользователь: #{current_user.name}
-br
-= link_to "Перейти в профиль", profile_path
+.container
+  h1 Ваш баланс
+  h2= @user.balance_string
+  = link_to "Перейти в профиль", profile_path

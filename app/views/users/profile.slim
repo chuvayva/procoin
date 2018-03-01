@@ -1,36 +1,36 @@
 .container
-  h2 Профиль
+  h1 Профиль
   .form-group.row
     label.col-sm-2
       | Имя
     .col-sm-10
-      p.form-control-static= current_user.name
+      p.form-control-static= @user.name
   .form-group.row
     label.col-sm-2
       | Почта
     .col-sm-10
-      p.form-control-static= current_user.email
+      p.form-control-static= @user.email
   .form-group.row
     label.col-sm-2
       | Телефон
     .col-sm-10
-      p.form-control-static= current_user.phone
+      p.form-control-static= @user.phone
   .form-group.row
     label.col-sm-2
       | Кошелек
     .col-sm-10
-      - if current_user.wallet.present?
-        p.form-control-static= current_user.wallet.presence
+      - if @user.wallet.present?
+        p.form-control-static= @user.wallet
       - else
         = form_tag new_wallet_users_path do
           = submit_tag "Создать", class: 'btn btn-default'
 
-  - if current_user.wallet.present?
+  - if @user.wallet.present?
     .form-group.row
       label.col-sm-2
         | Баланс
       .col-sm-10
-        p.form-control-static= current_user.balance
+        p.form-control-static= num_with_spaces(@user.balance)
 
   = link_to "Править", profile_edit_path, class: 'btn btn-primary'
 
