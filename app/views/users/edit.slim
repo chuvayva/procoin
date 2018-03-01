@@ -1,24 +1,30 @@
 .container
   h1 Редактировать профиль
-
+  br
   = form_for(@user) do |f|
     .form-group.row
-      | #{@user.email}
-    .form-group
-      = f.label :name, "Имя"
-      | &nbsp
-      = f.text_field :name, class: 'form_control'
-    .form-group
-      = f.label :wallet, "Кошелек"
-      = f.text_field :wallet, class: 'form_control'
-    .form-group
-      br
-      - if @user.wallet.blank?
-        = form_tag new_wallet_users_path do
-          = submit_tag "Создать"
+      = f.label :email, "Почта", class: 'col-sm-2 col-form-label'
+      .col-sm-6
+        = f.email_field :email, class: 'form-control', disabled: true
+    .form-group.row
+      = f.label :name, "Имя", class: 'col-sm-2 col-form-label'
+      .col-sm-6
+        = f.text_field :name, class: 'form-control', placeholder: 'Александр'
+    .form-group.row
+      = f.label :phone, "Телефон", class: 'col-sm-2 col-form-label'
+      .col-sm-6
+        = f.text_field :phone, class: 'form-control', placeholder: '89270001234'
+    .form-group.row
+      = f.label :wallet, "Кошелек", class: 'col-sm-2 col-form-label'
+      .col-sm-6
+        = f.text_field :wallet, class: 'form-control', placeholder: '0x3702996923eba1b7c50b9748ca46b19bc56a41d0'
+    .form-group.row
+      .col-sm-2
+      .col-sm-10
+        button.btn.btn-primary> type="submit" Сохранить
+        | &nbsp
+        = link_to 'Отмена', profile_path, class: 'btn btn-primary'
 
-      = f.submit 'Сохранить', class: 'btn btn-primary'
-    = link_to 'Отмена', profile_path, class: 'btn btn-primary'
 
 br
 br

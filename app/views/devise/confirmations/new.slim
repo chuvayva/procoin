@@ -2,7 +2,7 @@
   h2 Подтвердить почту
   = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f|
     .form-group
-      = f.label :email, 'Почта', class: "col-sm-2 control-label"
+      = f.label :email, 'Ваша Почта', class: "col-sm-2 control-label"
       .col-sm-6
         = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control'
     .form-group

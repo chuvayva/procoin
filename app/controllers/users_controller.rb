@@ -20,8 +20,8 @@ class UsersController < ApplicationController
 
   def new_wallet
     if current_user.wallet.blank?
-      @key = Eth::Key.new
-      current_user.wallet = @key.address
+      user = Users::WalletProcessing.new(current_user)
+      @key = user.generate_and_assign_key
     else
       redirect_to profile_path, notice: 'Пользователь уже имеет кошелек'
     end
@@ -30,6 +30,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:wallet, :wallet, :name)
+    params.require(:user).permit(:wallet, :phone, :name)
   end
 end

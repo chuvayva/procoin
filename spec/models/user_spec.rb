@@ -24,5 +24,22 @@ describe User do
         it { should be true }
       end
     end
+
+    describe 'phone' do
+      context 'when nil' do
+        let(:user) { build :user, phone: nil }
+        it { should be true }
+      end
+
+      context 'when invalid phone' do
+        let(:user) { build :user, phone: '687548' }
+        it { should be false }
+      end
+
+      context 'when valid phone' do
+        let(:user) { build :user, phone: '89271234578' }
+        it { should be true }
+      end
+    end
   end
 end

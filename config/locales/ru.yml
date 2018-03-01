@@ -5,6 +5,10 @@ ru:
       models:
         user:
           attributes:
+            name:
+              blank: не может быть пустым
             wallet:
               invalid: "Неверный формат"
+            phone:
+              invalid: "Неверный формат. Введите 11 цифр, начиная с 8-ки"
 
