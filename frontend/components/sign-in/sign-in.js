@@ -1,4 +1,4 @@
-import "./sign_in.css.scss";
+import "./sign-in.css.scss";
 import "gsap";
 
 document.addEventListener("DOMContentLoaded", function(event) {
