@@ -12,8 +12,8 @@ ru:
         header: "Отправить приглашение"
         submit_button: "Отправить приглашение"
       edit:
-        header: "Создание пароля"
-        submit_button: "Сохранить"
+        header: "Создание аккаунта"
+        submit_button: "Войти"
     mailer:
       invitation_instructions:
         subject: 'Procoin. Инструкции по созданию аккаунта'

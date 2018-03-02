@@ -5,10 +5,27 @@ ru:
       models:
         user:
           attributes:
+            email:
+              blank: не может быть пустым
             name:
               blank: не может быть пустым
             wallet:
               invalid: "Неверный формат"
             phone:
               invalid: "Неверный формат. Введите 11 цифр, начиная с 8-ки"
+            password:
+              blank: не может быть пустым
+              too_short: слишком короткий (6 символов минимум)
+            password_confirmation:
+              confirmation: не совпадает
+    attributes:
+      user:
+        email: Почта
+        name: Имя
+        phone: Телефон
+        wallet: Кошелек
+        password: Пароль
+        password_confirmation: Повторите Пароль
+
+
 
