@@ -5,6 +5,8 @@ FactoryBot.define do
     sequence(:email) {|n| "#{Faker::Internet.email}_#{n}" }
     sequence(:name) {|n| "#{Faker::StarWars.character} №#{n}" }
     password  '123456'
+
+    confirmed_at Date.today
   end
 end
 

@@ -32,6 +32,9 @@
       label.col-sm-2
         | Баланс
       .col-sm-10
-        p.form-control-static= num_with_spaces(@user.balance)
+        .form-control-static.inline-block>= num_with_spaces(@user.balance)
+        = form_tag balance_sync_users_path, class: 'inline-block' do
+          = button_tag type: :submit, class: 'btn btn-link', title: "Обновить Баланс" do
+            span.glyphicon.glyphicon-refresh<
 
   = link_to "Править", profile_edit_path, class: 'btn btn-primary'

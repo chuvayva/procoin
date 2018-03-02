@@ -1,6 +1,8 @@
 module Users
   class WalletProcessing < SimpleDelegator
-    cattr_accessor :token_contract
+    cattr_accessor :token_contract do
+      TokenContractInitializer.init_contract
+    end
 
     def generate_and_assign_key
       Eth::Key.new.tap do |key|

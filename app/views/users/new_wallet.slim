@@ -1,27 +1,25 @@
 .container
   .alert.alert-danger role="alert"
     h4.alert-heading Внимание
-    p Сохраните приватный ключ перед продолжение.
+    p Сохраните приватный ключ перед продолжением.
     hr
-    p.mb-0 Мы не храним приватные ключи пользователей. Потеря ключа будет означать потерю доступу к вашему кошельку.
+    p.mb-0 Мы не храним приватные ключи пользователей. Потеря ключа будет означать потерю доступа к вашему кошельку.
   h1 Новый кошелек
   br
   .form-group.row
-    label.col-sm-2.col-form-label
-      | Адрес Кошелька
+    label.col-sm-2.col-form-label Адрес Кошелька
     .col-sm-6
-      p.form-control-static= @key.address
+      p= @key.address
   .form-group.row
-    label.col-sm-2.col-form-label
-      | Приватный ключ
+    label.col-sm-2.col-form-label Приватный ключ
     .col-sm-6
-      p.form-control-static= @key.private_hex
+      p= @key.private_hex
   .form-group.row
     .col-sm-2
     .col-sm-6
       = form_for current_user do |f|
         = f.hidden_field :wallet
-        = f.submit 'Сохранить Адрес', class: 'btn btn-primary', data: { confirm: 'Вы действительно сохранили приватный ключ?' }
+        = f.submit 'Сохранить Кошелек', class: 'btn btn-primary', data: { confirm: 'Вы действительно сохранили приватный ключ?' }
         | &nbsp
         | &nbsp
         = link_to 'Отмена', profile_path, class: 'btn btn-primary'

@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'webmock/rspec'
 require 'vcr'
+require 'controller_spec_helper'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -18,6 +19,9 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
   config.include FactoryBot::Syntax::Methods
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerSpecHelper, type: :controller
 end
 
 VCR.configure do |config|

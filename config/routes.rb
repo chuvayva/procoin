@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get '/profile/edit', to: 'users#edit'
 
   resources :users, only: [:update] do
-    post :new_wallet, on: :collection
+    collection do
+      post :new_wallet
+      post :balance_sync
+    end
   end
 end
