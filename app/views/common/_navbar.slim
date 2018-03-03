@@ -2,17 +2,23 @@ nav.navbar.navbar-default
   .container-fluid
     .navbar-header
       a.navbar-brand href=root_path data-turbolinks="false" Procoin
+    .collapse.navbar-collapse
+      - if current_user.present?
+        ul.nav.navbar-nav
+          li class="#{'active' if controller_name == 'home'}"
+            a href=root_path Главная
+          li class="#{'active' if controller_name == 'invitations'}"
+            a href=invitations_path Приглашения
 
-    - if current_user.present?
-      ul.nav.navbar-nav.navbar-right
-        li
-          a href=profile_path
-            span.glyphicon.glyphicon-user>
-            = current_user.name
-        li
-          a href=destroy_user_session_path data-method='delete'
-            span.glyphicon.glyphicon-log-out>
-            | Выйти
-    - else
-      ul.nav.navbar-nav.navbar-right
-        = render 'devise/shared/links'
+        ul.nav.navbar-nav.navbar-right
+          li class="#{'active' if controller_name == 'users'}"
+            a href=profile_path
+              span.glyphicon.glyphicon-user>
+              = current_user.name
+          li
+            a href=destroy_user_session_path data-method='delete'
+              span.glyphicon.glyphicon-log-out>
+              | Выйти
+      - else
+        ul.nav.navbar-nav.navbar-right
+          = render 'devise/shared/links'

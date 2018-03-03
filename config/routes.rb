@@ -12,4 +12,6 @@ Rails.application.routes.draw do
       post :balance_sync
     end
   end
+
+  get '/invitations', to: 'invitations#index'
 end
