@@ -1,40 +1,43 @@
 .container
   = render 'common/notice'
-  h1 Профиль
-  br
-  .form-group.row
-    label.col-sm-2.col-form-label
-      | Почта
-    .col-sm-6
-      p.form-control-static= @user.email
-  .form-group.row
-    label.col-sm-2.col-form-label
-      | Имя
-    .col-sm-6
-      p.form-control-static= @user.name
-  .form-group.row
-    label.col-sm-2.col-form-label
-      | Телефон
-    .col-sm-6
-      p.form-control-static= @user.phone
-  .form-group.row
-    label.col-sm-2.col-form-label
-      | Кошелек
-    .col-sm-6
+  .panel.panel-default
+    .panel-heading
+      h1 Профиль
+    .panel-body
+      br
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | Почта
+        .col-sm-6
+          p.form-control-static= @user.email
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | Имя
+        .col-sm-6
+          p.form-control-static= @user.name
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | Телефон
+        .col-sm-6
+          p.form-control-static= @user.phone
+      .form-group.row
+        label.col-sm-2.col-form-label
+          | Кошелек
+        .col-sm-6
+          - if @user.wallet.present?
+            p.form-control-static= @user.wallet
+          - else
+            = form_tag new_wallet_users_path do
+              = submit_tag "Создать", class: 'btn btn-default'
+
       - if @user.wallet.present?
-        p.form-control-static= @user.wallet
-      - else
-        = form_tag new_wallet_users_path do
-          = submit_tag "Создать", class: 'btn btn-default'
+        .form-group.row
+          label.col-sm-2
+            | Баланс
+          .col-sm-10
+            .form-control-static.inline-block>= num_with_spaces(@user.balance)
+            = form_tag balance_sync_users_path, class: 'inline-block' do
+              = button_tag type: :submit, class: 'btn btn-link', title: "Обновить Баланс" do
+                span.glyphicon.glyphicon-refresh<
 
-  - if @user.wallet.present?
-    .form-group.row
-      label.col-sm-2
-        | Баланс
-      .col-sm-10
-        .form-control-static.inline-block>= num_with_spaces(@user.balance)
-        = form_tag balance_sync_users_path, class: 'inline-block' do
-          = button_tag type: :submit, class: 'btn btn-link', title: "Обновить Баланс" do
-            span.glyphicon.glyphicon-refresh<
-
-  = link_to "Править", profile_edit_path, class: 'btn btn-primary'
+      = link_to "Править", profile_edit_path, class: 'btn btn-primary'

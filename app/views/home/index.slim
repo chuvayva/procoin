@@ -1,11 +1,14 @@
 .container
-  - if current_user.wallet.blank?
-    h1 У вас пока нет кошелька
-    br
-    .form-group.row
-      = form_tag new_wallet_users_path do
-        = submit_tag "Создать Кошелек", class: 'btn btn-default btn-lg'
-  - else
-    h1 Ваш баланс
-    h2= @user.balance_string
-    = link_to "Перейти в профиль", profile_path
+  .panel.panel-default
+    - if current_user.wallet.blank?
+      .panel-heading
+        h2 У вас пока нет кошелька
+      .panel-body
+        = form_tag new_wallet_users_path do
+          = submit_tag "Создать Кошелек", class: 'btn btn-default btn-lg'
+    - else
+      .panel-heading
+        h1 Ваш баланс
+      .panel-body
+        h2= @user.balance_string
+        = link_to "Перейти в профиль", profile_path
