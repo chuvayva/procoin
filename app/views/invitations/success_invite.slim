@@ -1,0 +1,23 @@
+.container
+  .alert.alert-danger role="alert"
+    h4.alert-heading Внимание
+    p Сохраните ссылку перед продолжением
+
+  h1 Новый пользователь
+  br
+  .form-group.row
+    label.col-sm-2.col-form-label Имя
+    .col-sm-10
+      p= @user.name
+  .form-group.row
+    label.col-sm-2.col-form-label Номер
+    .col-sm-10
+      p= @user.phone
+  .form-group.row
+    label.col-sm-2.col-form-label Ссылка
+    .col-sm-10
+      = c 'copying-field', value: @user.invitation_url
+  .form-group.row
+    .col-sm-2
+    .col-sm-10
+        = link_to 'Продолжить', invitations_path, class: 'btn btn-primary'

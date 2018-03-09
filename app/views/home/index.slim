@@ -1,4 +1,5 @@
 .container
+  = render 'common/notice'
   .panel.panel-default
     - if current_user.wallet.blank?
       .panel-heading
@@ -8,7 +9,9 @@
           = submit_tag "Создать Кошелек", class: 'btn btn-default btn-lg'
     - else
       .panel-heading
-        h1 Ваш баланс
+        h1 Главная
       .panel-body
+        h2 Ваш баланс
         h2= @user.balance_string
+        h3 Всего пользователей: #{User.count}
         = link_to "Перейти в профиль", profile_path

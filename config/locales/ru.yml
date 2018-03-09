@@ -1,5 +1,15 @@
 ru:
   hello: "Привет"
+  activemodel:
+    errors:
+      models:
+        users/invitation_validating:
+          attributes:
+            name:
+              blank: не может быть пустым
+            phone:
+              invalid: неверный формат (введите 11 цифр, начиная с 8-ки)
+              blank: не может быть пустым
   activerecord:
     errors:
       models:
@@ -7,12 +17,14 @@ ru:
           attributes:
             email:
               blank: не может быть пустым
+              taken: уже занята
             name:
               blank: не может быть пустым
             wallet:
-              invalid: "Неверный формат"
+              invalid: неверный формат
             phone:
-              invalid: "Неверный формат. Введите 11 цифр, начиная с 8-ки"
+              invalid: неверный формат (введите 11 цифр, начиная с 8-ки)
+              blank: не может быть пустым
             password:
               blank: не может быть пустым
               too_short: слишком короткий (6 символов минимум)

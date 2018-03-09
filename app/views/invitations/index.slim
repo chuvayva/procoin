@@ -2,5 +2,48 @@
   = render 'common/notice'
   .panel.panel-default
     .panel-heading
-      h1 Приглашения
+      h1 Ваши Приглашения
     .panel-body
+      - if current_user.invitations.blank?
+        p Вы пока еще никого не пригласили
+        = link_to "Пригласить", new_invitation_path, class: 'btn btn-primary'
+      - else
+        - if @accepted_invitations.present?
+          table.table.table-hover
+            caption
+              | Приглашенных: #{@accepted_invitations.count}
+            thead
+              tr
+                th scope="col" Имя
+                th scope="col" Почта
+                th scope="col" Телефон
+                th scope="col" Баланс
+            tbody
+              - @accepted_invitations.order(:name).each do |user|
+                tr
+                  td= user.name
+                  td= user.email
+                  td= user.phone
+                  td= user.balance
+
+        - if @not_accepted_invitations.present?
+          table.table.table-hover
+            caption
+              | Еще не приняли: #{@not_accepted_invitations.count}
+            thead
+              tr
+                th scope="col" Имя
+                th scope="col" Телефон
+                th scope="col"
+            tbody
+              - @not_accepted_invitations.order(created_at: :desc).each do |user|
+                tr
+                  td= user.name
+                  td= user.phone
+                  td
+                    = form_for user, url: user_reset_invitation_token_path(user), class: 'inline-block' do |f|
+                      = f.hidden_field :name
+                      = f.hidden_field :phone
+                      = f.submit 'Создать новую ссылку', class: 'btn btn-default', data: { confirm: 'Прошлая ссылка перестанет работать. Создать новую?' }
+
+        = link_to "Пригласить еще", new_invitation_path, class: 'btn btn-primary'

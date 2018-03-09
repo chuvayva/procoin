@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       redirect_to :profile, notice: 'Пользователь успешно изменен'
     else
-      render :edit, notice: 'Что-то пошло не так'
+      render :edit
     end
   end
 
@@ -36,6 +36,15 @@ class UsersController < ApplicationController
     else
       redirect_to profile_path, notice: 'Сначала надо привязать кошелек'
     end
+  end
+
+  def reset_invitation_token
+    @user = User.find(params[:user_id])
+    @user.send(:generate_invitation_token)
+    @user.save
+    @user = @user.decorate
+
+    render 'invitations/success_invite'
   end
 
   private
