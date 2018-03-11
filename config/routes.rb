@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:update] do
     collection do
-      post :new_wallet
+      get :new_wallet
       post :balance_sync
     end
 

@@ -41,6 +41,7 @@ group :test do
   gem 'faker'
   gem 'vcr'
   gem 'webmock'
+  gem 'rails-controller-testing'
 end
 
 group :production do

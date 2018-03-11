@@ -17,8 +17,9 @@
   .form-group.row
     .col-sm-2
     .col-sm-6
-      = form_for current_user do |f|
+      = form_for @user do |f|
         = f.hidden_field :wallet
+        = f.hidden_field :balance
         = f.submit 'Сохранить Кошелек', class: 'btn btn-primary', data: { confirm: 'Вы действительно сохранили приватный ключ?' }
         | &nbsp
         | &nbsp

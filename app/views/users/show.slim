@@ -27,8 +27,7 @@
           - if @user.wallet.present?
             p.form-control-static= @user.wallet
           - else
-            = form_tag new_wallet_users_path do
-              = submit_tag "Создать", class: 'btn btn-default'
+            = link_to "Создать", new_wallet_users_path, class: 'btn btn-default'
 
       - if @user.wallet.present?
         .form-group.row

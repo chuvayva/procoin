@@ -1,4 +1,6 @@
 class InvitationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @accepted_invitations = current_user.invitations.invitation_accepted
     @not_accepted_invitations = current_user.invitations.invitation_not_accepted
