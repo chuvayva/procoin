@@ -18,26 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def new_wallet
-    if current_user.wallet.blank?
-      @user = Users::WalletProcessing.new(current_user)
-      @key = @user.generate_and_assign_key
-    else
-      redirect_to profile_path, notice: 'Пользователь уже имеет кошелек'
-    end
-  end
-
-  def balance_sync
-    if current_user.wallet.present?
-      user = Users::WalletProcessing.new(current_user)
-      user.balance_sync
-
-      redirect_to profile_path, notice: 'Баланс синхронизирован с блокчейном'
-    else
-      redirect_to profile_path, notice: 'Сначала надо привязать кошелек'
-    end
-  end
-
   def reset_invitation_token
     @user = User.find(params[:user_id])
     @user.send(:generate_invitation_token)

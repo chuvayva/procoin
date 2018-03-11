@@ -27,7 +27,7 @@
           - if @user.wallet.present?
             p.form-control-static= @user.wallet
           - else
-            = link_to "Создать", new_wallet_users_path, class: 'btn btn-default'
+            = link_to "Создать", new_wallet_path, class: 'btn btn-default'
 
       - if @user.wallet.present?
         .form-group.row
@@ -35,7 +35,7 @@
             | Баланс
           .col-sm-10
             .form-control-static.inline-block>= num_with_spaces(@user.balance)
-            = form_tag balance_sync_users_path, class: 'inline-block' do
+            = form_tag balance_sync_wallet_path, class: 'inline-block' do
               = button_tag type: :submit, class: 'btn btn-link', title: "Обновить Баланс" do
                 span.glyphicon.glyphicon-refresh<
 

@@ -14,14 +14,12 @@ Rails.application.routes.draw do
   get '/profile/edit', to: 'users#edit'
 
   resources :users, only: [:update] do
-    collection do
-      get :new_wallet
-      post :balance_sync
-    end
-
     patch :reset_invitation_token
   end
 
   resources :invitations, only: [:index, :new, :create]
 
+  resource :wallet, only: [:new] do
+    post :balance_sync
+  end
 end
