@@ -13,6 +13,8 @@ nav.navbar.navbar-default
           a href=root_path Главная
         li class="#{'active' if controller_name == 'invitations'}"
           a href=invitations_path Приглашения
+        li class="#{'active' if controller_name == 'transfers' }"
+          a href=transfers_path Переводы
 
       ul.nav.navbar-nav.navbar-right
         li class="#{'active' if controller_name == 'users'}"

@@ -1,6 +1,7 @@
 @import 'scss/variables';
 @import 'scss/helpers';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import '~bootstrap-select/sass/bootstrap-select.scss';
 
 body {
   background-color: #eff3f4; position: relative; width: 100%; height: 100%;

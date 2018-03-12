@@ -1,8 +1,5 @@
 module Users
   class WalletProcessing < SimpleDelegator
-    cattr_accessor :token_contract do
-      TokenContractInitializer.init_contract
-    end
 
     def generate_and_assign_key
       Eth::Key.new.tap do |key|
@@ -16,7 +13,7 @@ module Users
     def balance_sync
       return nil if wallet.blank?
 
-      balance = token_contract.call.balance_of(wallet)
+      balance = TokenContractService.balance_of(wallet)
       update_attributes(balance: balance)
     end
   end

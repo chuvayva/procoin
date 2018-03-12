@@ -1,0 +1,76 @@
+= form_for @transfer, html: { class: 'signed-transfer' } do |f|
+  = f.hidden_field :user_id
+  = f.hidden_field :from
+  = f.hidden_field :nonce
+  = f.hidden_field :token_contract
+
+  #accordion.panel-group
+    .panel.panel-info
+      .panel-heading
+        h4.panel-title.js-user-fields-heading Параметры перевода
+      #collapseUserFields.panel-collapse.collapse.in
+        .panel-body
+          .form-group.row
+            = f.label :to, class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              select.selectpicker.form-control.js-transfer-field name="transfer[to]" id="transfer_to" data-live-search="true" title="Выберите пользователя"
+                - current_user.invitations.order(:name).each do |user|
+                  - if user.wallet.present?
+                    option value=user.wallet = user.name
+                  - else
+                    option value=user.wallet data-subtext="пока без кошелька" disabled='disabled' = user.name
+          .form-group.row
+            = f.label :amount, class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              = f.number_field :amount, class: 'form-control js-transfer-field', min: 100
+          .form-group.row
+            = f.label :fee, class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              = f.number_field :fee, class: 'form-control', readonly: true
+          .form-group.row
+            .col-sm-3
+            .col-sm-9
+              a.btn.btn-primary.js-user-fields-next.disabled data-parent="#accordion" data-toggle="collapse" href="#collapseSign" Далее
+
+    .panel.panel-info
+      .panel-heading
+        h4.panel-title.js-sign-heading Цифровая Подпись
+      #collapseSign.panel-collapse.collapse
+        .panel-body
+          .form-group.row
+            label.col-sm-3.col-form-label Ваш Приватный Ключ
+            .col-sm-6
+              input.form-control.js-private-key placeholder='11368bfc3c528c014b0c8c2d513f7dcfe5ce3b1b8d98d83564c2e16486925936'
+          .form-group.row
+            .col-sm-3
+            .col-sm-6
+              a.btn.btn-primary.js-sign-next.disabled data-parent="#accordion" data-toggle="collapse" href="#collapseSent" Подписать
+
+    .panel.panel-info
+      .panel-heading
+        h4.panel-title Отправка
+      #collapseSent.panel-collapse.collapse
+        .panel-body
+          .form-group.row
+            label.col-sm-2.col-form-label Кому
+            .col-sm-6
+              p.js-sent-to
+          .form-group.row
+            label.col-sm-2.col-form-label Сколько
+            .col-sm-6
+              p.js-sent-amount
+          .form-group.row
+            label.col-sm-2.col-form-label Сбор
+            .col-sm-6
+              p.js-sent-fee
+          .form-group.row
+            label.col-sm-2.col-form-label Цифровая подпись
+            .col-sm-6
+              = f.text_area :signature, class: 'form-control', rows: 2, readonly: true
+
+          .form-group.row
+            .col-sm-3
+            .col-sm-9
+              = f.submit "Отправить", class: 'btn btn-primary'
+              | &nbsp
+              = link_to 'Отмена', profile_path, class: 'btn btn-primary'

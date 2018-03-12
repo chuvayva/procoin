@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   resource :wallet, only: [:new] do
     post :balance_sync
   end
+
+  resources :transfers, only: [:index, :new, :create]
 end

@@ -8,5 +8,6 @@ class User < ApplicationRecord
   validates :phone, uniqueness: true, format: /\A8\d{10}\Z/, if: 'phone.present?'
 
   has_many :invitations, class_name: self.to_s, as: :invited_by
+  has_many :transfers
 
 end

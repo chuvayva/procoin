@@ -40,6 +40,12 @@ ru:
         wallet: Кошелек
         password: Пароль
         password_confirmation: Повторите Пароль
+      transfer:
+        from: От Кого
+        to: Кому
+        amount: Сколько
+        fee: Сбор
+
 
 
 
