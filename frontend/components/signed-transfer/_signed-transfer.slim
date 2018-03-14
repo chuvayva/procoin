@@ -19,6 +19,8 @@
                     option value=user.wallet = user.name
                   - else
                     option value=user.wallet data-subtext="пока без кошелька" disabled='disabled' = user.name
+            - if current_user.invitations.blank?
+              .col-sm-6.form-control-static.form-helper Пригласите друзей, чтобы переводить им монеты
           .form-group.row
             = f.label :amount, class: 'col-sm-3 col-form-label'
             .col-sm-3

@@ -1,7 +1,7 @@
 import $ from "jquery";
 import _ from "lodash";
 import signTransfer from "./sign-transfer";
-import "./signed-transfer.css.scss";
+import "./signed-transfer.css.sass";
 
 document.addEventListener("DOMContentLoaded", () => {
   const userFieldsHeading = $(".js-user-fields-heading");

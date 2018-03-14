@@ -45,7 +45,12 @@ ru:
         to: Кому
         amount: Сколько
         fee: Сбор
-
-
+  enumerize:
+    transfer:
+      status:
+        pending: Ожидание
+        failed: Ошибка в транзакции
+        error: Ошибка отправки
+        completed: Отправлено
 
 

@@ -4,27 +4,27 @@ ruby '2.3.1'
 gem 'rails', '~> 5.0.6'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
-
-gem 'jbuilder', '~> 2.5'
-gem 'rollbar'
-
 gem 'webpacker'
-gem 'sendgrid-ruby'
-
-gem 'ethereum.rb'
-gem 'eth'
 
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+#model
+gem 'enumerize'
 
 # controller
 gem 'devise'
 gem 'devise_invitable'
 
 # view
+gem 'jbuilder', '~> 2.5'
 gem 'slim'
 gem 'draper'
+
+# other
+gem 'sendgrid-ruby'
+gem 'rollbar'
+gem 'ethereum.rb'
+gem 'eth'
+
 
 group :development, :test do
   gem 'rspec-rails'
@@ -48,3 +48,6 @@ group :production do
   gem 'puma-heroku'
   gem 'rails_12factor'
 end
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

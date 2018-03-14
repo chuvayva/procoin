@@ -1,5 +1,9 @@
 class TransfersController < ApplicationController
 
+  def index
+    @transfers = current_user.transfers.order(created_at: :desc).preload(:target).decorate
+  end
+
   def new
     @transfer = TokenContractService.new_transfer current_user
   end
@@ -10,9 +14,9 @@ class TransfersController < ApplicationController
     transfer = Transfer.new attributes
 
     if transfer.save
-      redirect_to transfers_path, notice: 'Ваш перевод принят к отправке. Скоро мы передадим его в блокчейн'
+      redirect_to transfers_path, notice: 'Ваш перевод принят. Скоро отправим'
     else
-      redirect_to transfers_path, notice: 'Что пошло не так! Попробуйте снова или обратитесь к администратору'
+      redirect_to transfers_path, alert: 'Что пошло не так! Попробуйте снова или обратитесь к администратору'
     end
   end
 
