@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const signHeading = $(".js-sign-heading");
   const privateKeyInput = $(".js-private-key");
   const signButton = $(".js-sign-next");
+  const sendButton = $(".js-send");
 
   const to = $("select#transfer_to option:selected");
   const amount = $("#transfer_amount");
@@ -58,5 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     signHeading.html(
       `Подпись: <span class="bold glyphicon glyphicon-ok"></span>`
     );
+
+    sendButton.removeAttr("disabled");
   });
 });

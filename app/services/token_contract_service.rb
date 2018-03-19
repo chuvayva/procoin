@@ -3,6 +3,7 @@ class TokenContractService
   ETHEREUM_TOKEN_ADDRESS = ENV.fetch('ETHEREUM_TOKEN_ADDRESS', '')
   ETHEREUM_ADMIN_ACCOUNT = ENV.fetch('ETHEREUM_ADMIN_ACCOUNT', '')
   ETHEREUM_TOKEN_TRANSFER_FEE = ENV.fetch('ETHEREUM_TOKEN_TRANSFER_FEE', 0)
+  ETHEREUM_ADMIN_PRIVATE_KEY = ENV.fetch('ETHEREUM_ADMIN_PRIVATE_KEY', '')
 
   class << self
     def new_transfer(user)
@@ -27,11 +28,13 @@ class TokenContractService
     def token_contract
       @_token_contract ||= begin
         Ethereum::Contract.create(
-          abi: File.read(Rails.root.join("lib/blockchain/vit_token_abi.json")),
-          name: 'VitToken',
+          abi: File.read(Rails.root.join("lib/blockchain/procoin_abi.json")),
+          name: 'Procoin',
           address: ETHEREUM_TOKEN_ADDRESS,
           client: rpc_client,
-        )
+        ).tap { |contract|
+          contract.key = Eth::Key.new(priv: ETHEREUM_ADMIN_PRIVATE_KEY)
+        }
       end
     end
 
@@ -39,6 +42,7 @@ class TokenContractService
       Ethereum::HttpClient.new(ETHEREUM_RPC_URL).tap do |client|
         client.instance_variable_set :@default_account, ETHEREUM_ADMIN_ACCOUNT
         client.instance_variable_set :@uri, ETHEREUM_RPC_URL
+        client.gas_price = 5_000_000_000
       end
     end
   end

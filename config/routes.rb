@@ -1,7 +1,11 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   devise_for :users, skip: :invitations
 
+  # Filtered Invitation routes
+  # from /devise_invitable-1.7.3/lib/devise_invitable/routes.rb
   devise_scope :user do
     resource :invitation, only: :update, path: 'users/invitation', controller: "devise/invitations" do
       get :edit, path: :accept, as: :accept_user
@@ -9,6 +13,10 @@ Rails.application.routes.draw do
   end
 
   root to: "home#index"
+
+  authenticate :user, lambda { |user| Rails.env.development? || user.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   get '/profile', to: 'users#profile'
   get '/profile/edit', to: 'users#edit'

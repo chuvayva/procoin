@@ -20,6 +20,7 @@ gem 'slim'
 gem 'draper'
 
 # other
+gem 'sidekiq'
 gem 'sendgrid-ruby'
 gem 'rollbar'
 gem 'ethereum.rb'

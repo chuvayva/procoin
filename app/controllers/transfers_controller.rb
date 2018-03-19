@@ -14,6 +14,8 @@ class TransfersController < ApplicationController
     transfer = Transfer.new attributes
 
     if transfer.save
+      TransferWorker.perform_async transfer.id
+
       redirect_to transfers_path, notice: 'Ваш перевод принят. Скоро отправим'
     else
       redirect_to transfers_path, alert: 'Что пошло не так! Попробуйте снова или обратитесь к администратору'

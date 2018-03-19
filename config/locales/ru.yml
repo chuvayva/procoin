@@ -32,6 +32,12 @@ ru:
               too_short: слишком короткий (6 символов минимум)
             password_confirmation:
               confirmation: не совпадает
+        transfer:
+          attributes:
+            user:
+              required: должен быть задан
+            target:
+              required: должен быть задан
     attributes:
       user:
         email: Почта

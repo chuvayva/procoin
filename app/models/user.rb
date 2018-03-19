@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :invitations, class_name: self.to_s, as: :invited_by
   has_many :transfers
 
+  enumerize :role, in: %i[client admin], default: :client, scope: true, predicates: true
+
 end
