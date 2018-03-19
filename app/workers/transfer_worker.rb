@@ -24,8 +24,9 @@ class TransferWorker
 
       transfer.update_attributes(status: status, tx: tx.id)
     rescue => e
-      puts e
       transfer.update_attributes(status: :error)
+
+      raise e
     end
   end
 end
