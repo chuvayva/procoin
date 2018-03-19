@@ -5,6 +5,8 @@ class TransfersController < ApplicationController
   end
 
   def new
+    scope = current_user.admin? ? User.all : current_user.invitations
+    @invitations = scope.order(:name).select(:name, :wallet)
     @transfer = TokenContractService.new_transfer current_user
   end
 
