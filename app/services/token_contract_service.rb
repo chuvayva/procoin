@@ -2,20 +2,9 @@ class TokenContractService
   ETHEREUM_RPC_URL = ENV.fetch('ETHEREUM_RPC_URL', '')
   ETHEREUM_TOKEN_ADDRESS = ENV.fetch('ETHEREUM_TOKEN_ADDRESS', '')
   ETHEREUM_ADMIN_ACCOUNT = ENV.fetch('ETHEREUM_ADMIN_ACCOUNT', '')
-  ETHEREUM_TOKEN_TRANSFER_FEE = ENV.fetch('ETHEREUM_TOKEN_TRANSFER_FEE', 0)
   ETHEREUM_ADMIN_PRIVATE_KEY = ENV.fetch('ETHEREUM_ADMIN_PRIVATE_KEY', '')
 
   class << self
-    def new_transfer(user)
-      Transfer.new.tap do |t|
-        t.nonce = rand(1000)
-        t.fee = ETHEREUM_TOKEN_TRANSFER_FEE
-        t.user = user
-        t.from = user.wallet
-        t.token_contract = ETHEREUM_TOKEN_ADDRESS
-      end
-    end
-
     def balance_of(address)
       token_contract.call.balance_of(address)
     end

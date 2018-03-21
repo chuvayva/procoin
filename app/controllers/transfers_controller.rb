@@ -6,15 +6,13 @@ class TransfersController < ApplicationController
   end
 
   def new
-    scope = current_user.admin? ? User.all : current_user.invitations
+    scope = current_user.admin? ? User.where.not(id: current_user) : current_user.invitations
     @invitations = scope.order(:name).select(:name, :wallet)
-    @transfer = TokenContractService.new_transfer current_user
+    @transfer = TransferService.prepare_instance current_user
   end
 
   def create
-    target_user = User.find_by_wallet transfer_params[:to]
-    attributes = transfer_params.merge(user: current_user, from: current_user.wallet, target: target_user)
-    transfer = Transfer.new attributes
+    transfer = TransferService.new_instance(current_user, transfer_params)
 
     if transfer.save
       TransferWorker.perform_async transfer.id

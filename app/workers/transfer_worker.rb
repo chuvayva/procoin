@@ -1,6 +1,6 @@
 class TransferWorker
   include Sidekiq::Worker
-  sidekiq_options queue: :default
+  sidekiq_options queue: :default, retry: false
 
   def perform(transfer_id)
     transfer = Transfer.find(transfer_id)
