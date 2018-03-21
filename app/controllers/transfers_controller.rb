@@ -1,4 +1,5 @@
 class TransfersController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @transfers = current_user.transfers.order(created_at: :desc).preload(:target).decorate
