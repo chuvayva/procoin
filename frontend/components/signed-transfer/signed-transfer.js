@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const signButton = $(".js-sign-next");
   const sendButton = $(".js-send");
 
-  const to = $("select#transfer_to option:selected");
+  const to = () => $("select#transfer_to option:selected");
   const amount = $("#transfer_amount");
   const fee = $("#transfer_fee");
   const nonce = $("#transfer_nonce");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   userFieldsNextButton.click(() => {
     userFieldsHeading.html(
-      `Параметры перевода: <span class="bold">${to.text()}, ${amount.val()} + ${fee.val()}</span>`
+      `Параметры перевода: <span class="bold">${to().text()}, ${amount.val()} + ${fee.val()}</span>`
     );
   });
 
@@ -44,14 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
   signButton.click(() => {
     const signatureValue = signTransfer(
       tokenContract.val(),
-      to.val(),
+      to().val(),
       amount.val(),
       fee.val(),
       nonce.val(),
       privateKeyInput.val().trim()
     );
 
-    $(".js-sent-to").html(to.html());
+    $(".js-sent-to").html(to().html());
     $(".js-sent-amount").html(amount.val());
     $(".js-sent-fee").html(fee.val());
     signature.val(signatureValue);
